@@ -5,183 +5,245 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrack - AI 재무 관리사</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            max-width: 480px;
-            width: 100%;
-            padding: 40px 24px;
-            text-align: center;
-        }
-        .logo {
-            font-size: 64px;
-            margin-bottom: 16px;
-        }
-        h1 {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .subtitle {
-            font-size: 16px;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 40px;
-        }
-        .phone-mockup {
-            position: relative;
-            margin: 0 auto 40px;
-            width: 240px;
-            height: 480px;
-            background: #1a1a2e;
-            border-radius: 32px;
-            border: 3px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-        }
-        .phone-mockup .screen {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 29px;
-        }
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-        .feature {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 20px 12px;
-            text-align: center;
-        }
-        .feature .icon { font-size: 28px; margin-bottom: 8px; }
-        .feature .label {
-            font-size: 13px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.85);
-        }
-        .feature .desc {
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            margin-top: 4px;
-        }
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 18px 48px;
-            border-radius: 16px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 8px 32px rgba(102,126,234,0.4);
-            margin-bottom: 12px;
-        }
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(102,126,234,0.6);
-        }
-        .download-btn .android-icon { font-size: 24px; }
-        .file-info {
-            font-size: 12px;
-            color: rgba(255,255,255,0.35);
-            margin-bottom: 40px;
-        }
-        .api-section {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 16px;
-            padding: 24px;
-            text-align: left;
-            margin-bottom: 24px;
-        }
-        .api-section h3 {
-            font-size: 14px;
-            color: rgba(255,255,255,0.5);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .api-url {
-            font-family: 'SF Mono', monospace;
-            font-size: 13px;
-            color: #667eea;
-            background: rgba(102,126,234,0.1);
-            padding: 10px 14px;
-            border-radius: 8px;
-            word-break: break-all;
-        }
-        .api-url a { color: #667eea; text-decoration: none; }
-        .api-url a:hover { text-decoration: underline; }
-        footer {
-            font-size: 12px;
-            color: rgba(255,255,255,0.25);
-            padding: 24px;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800;900&display=swap');
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans KR',sans-serif;background:#09090f;color:#e8e8f0;overflow-x:hidden}
+
+        /* ── NAV ── */
+        nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(9,9,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
+        nav .inner{max-width:1100px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
+        nav .brand{font-weight:800;font-size:20px;color:#fff;text-decoration:none}
+        nav .brand span{background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        nav a.cta{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none;padding:10px 24px;border-radius:12px;font-weight:600;font-size:14px;transition:transform .2s}
+        nav a.cta:hover{transform:translateY(-1px)}
+
+        /* ── HERO ── */
+        .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(102,126,234,.15),transparent 70%);top:-100px;left:-100px;pointer-events:none}
+        .hero::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(118,75,162,.12),transparent 70%);bottom:-100px;right:-100px;pointer-events:none}
+        .hero-content{position:relative;z-index:1;max-width:720px}
+        .badge{display:inline-block;background:rgba(102,126,234,.12);border:1px solid rgba(102,126,234,.25);color:#98a8f8;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:600;margin-bottom:24px}
+        .hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.15;margin-bottom:20px}
+        .hero h1 .accent{background:linear-gradient(135deg,#667eea,#a78bfa,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .hero p{font-size:18px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:40px;max-width:520px;margin-left:auto;margin-right:auto}
+        .hero-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+        .btn-primary{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 36px;border-radius:14px;transition:all .25s;box-shadow:0 8px 32px rgba(102,126,234,.35)}
+        .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(102,126,234,.5)}
+        .btn-secondary{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#ccc;text-decoration:none;font-size:16px;font-weight:600;padding:16px 36px;border-radius:14px;transition:all .25s}
+        .btn-secondary:hover{background:rgba(255,255,255,.1);color:#fff}
+
+        /* ── SCREENSHOTS ── */
+        .screenshots{padding:40px 24px 100px;overflow:hidden}
+        .screenshots h2{text-align:center;font-size:14px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.3);margin-bottom:48px}
+        .phone-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
+        .phone{width:220px;flex-shrink:0;position:relative}
+        .phone img{width:100%;border-radius:24px;border:2px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+        .phone .label{text-align:center;margin-top:16px;font-size:14px;font-weight:600;color:rgba(255,255,255,.5)}
+
+        /* ── FEATURES ── */
+        .features{padding:100px 24px;max-width:1000px;margin:0 auto}
+        .features .section-tag{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#667eea;font-weight:600;margin-bottom:12px}
+        .features h2{text-align:center;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:60px}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+        .feat-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:32px 28px;transition:all .3s}
+        .feat-card:hover{background:rgba(255,255,255,.06);border-color:rgba(102,126,234,.2);transform:translateY(-4px)}
+        .feat-card .icon{font-size:36px;margin-bottom:16px}
+        .feat-card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+        .feat-card p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.6}
+
+        /* ── HOW IT WORKS ── */
+        .how{padding:100px 24px;max-width:800px;margin:0 auto}
+        .how .section-tag{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#a78bfa;font-weight:600;margin-bottom:12px}
+        .how h2{text-align:center;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:60px}
+        .steps{display:flex;flex-direction:column;gap:0}
+        .step{display:flex;gap:24px;align-items:flex-start;position:relative;padding-bottom:48px}
+        .step:last-child{padding-bottom:0}
+        .step-num{width:48px;height:48px;flex-shrink:0;background:linear-gradient(135deg,#667eea,#764ba2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;position:relative;z-index:1}
+        .step:not(:last-child) .step-num::after{content:'';position:absolute;top:48px;left:50%;width:2px;height:calc(100% + 0px);background:rgba(102,126,234,.2);transform:translateX(-50%)}
+        .step:not(:last-child)::after{content:'';position:absolute;left:23px;top:48px;width:2px;height:calc(100% - 48px);background:rgba(102,126,234,.15)}
+        .step-content h3{font-size:18px;font-weight:700;margin-bottom:6px}
+        .step-content p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.6}
+
+        /* ── TECH ── */
+        .tech{padding:80px 24px;text-align:center}
+        .tech .section-tag{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:rgba(255,255,255,.3);font-weight:600;margin-bottom:24px}
+        .tech-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:700px;margin:0 auto}
+        .pill{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:10px 20px;border-radius:12px;font-size:13px;font-weight:600;color:rgba(255,255,255,.6)}
+
+        /* ── CTA ── */
+        .cta-section{padding:100px 24px;text-align:center}
+        .cta-box{max-width:600px;margin:0 auto;background:linear-gradient(135deg,rgba(102,126,234,.1),rgba(118,75,162,.1));border:1px solid rgba(102,126,234,.15);border-radius:28px;padding:56px 40px}
+        .cta-box h2{font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:12px}
+        .cta-box p{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:32px}
+        .cta-box .file-info{font-size:12px;color:rgba(255,255,255,.3);margin-top:16px}
+
+        /* ── FOOTER ── */
+        footer{padding:40px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
+        footer .links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+        footer a{color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;transition:color .2s}
+        footer a:hover{color:#667eea}
+        footer .copy{font-size:12px;color:rgba(255,255,255,.2)}
+
+        @media(max-width:640px){
+            .phone{width:160px}
+            .phone img{border-radius:18px}
+            .step{gap:16px}
+            .cta-box{padding:40px 24px}
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">&#x1F4B0;</div>
-        <h1>FinTrack</h1>
-        <p class="subtitle">AI가 잔소리하는 똑똑한 재무 관리사</p>
 
-        <div class="features">
-            <div class="feature">
-                <div class="icon">&#x1F4F1;</div>
-                <div class="label">SMS 자동 감지</div>
-                <div class="desc">카드 결제 문자를 자동 기록</div>
-            </div>
-            <div class="feature">
-                <div class="icon">&#x1F916;</div>
-                <div class="label">AI 카테고리</div>
-                <div class="desc">지출을 자동 분류</div>
-            </div>
-            <div class="feature">
-                <div class="icon">&#x1F4CA;</div>
-                <div class="label">일일 예산</div>
-                <div class="desc">오늘 쓸 수 있는 돈 계산</div>
-            </div>
-            <div class="feature">
-                <div class="icon">&#x1F525;</div>
-                <div class="label">과소비 경고</div>
-                <div class="desc">오버레이 + 잔소리 알림</div>
+<!-- NAV -->
+<nav>
+    <div class="inner">
+        <a href="#" class="brand"><span>FinTrack</span></a>
+        <a href="#download" class="cta">APK &#x1F4E5;</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">2026 Hackathon Project</div>
+        <h1>당신의 지갑을 지켜주는<br><span class="accent">AI 재무 관리사</span></h1>
+        <p>카드 결제 문자가 오면 자동으로 기록하고,<br>AI가 지출을 분석해서 잔소리까지 해주는<br>당신만의 재무 관리 파트너</p>
+        <div class="hero-buttons">
+            <a href="#download" class="btn-primary">&#x1F4E5; APK 다운로드</a>
+            <a href="#features" class="btn-secondary">&#x1F50D; 기능 살펴보기</a>
+        </div>
+    </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="screenshots">
+    <h2>App Screenshots</h2>
+    <div class="phone-row">
+        <div class="phone">
+            <img src="img-home.png" alt="홈 화면">
+            <div class="label">일일 예산 대시보드</div>
+        </div>
+        <div class="phone">
+            <img src="img-transactions.png" alt="거래 내역">
+            <div class="label">카테고리별 거래내역</div>
+        </div>
+        <div class="phone">
+            <img src="img-budget.png" alt="예산 관리">
+            <div class="label">목표 저축 예측</div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="section-tag">Features</div>
+    <h2>이런 기능이 있어요</h2>
+    <div class="features-grid">
+        <div class="feat-card">
+            <div class="icon">&#x1F4F2;</div>
+            <h3>SMS 자동 감지</h3>
+            <p>카드 결제 문자, 은행 알림을 자동으로 읽어 거래를 기록합니다. 신한, KB, 카카오, 토스, 농협 등 주요 금융사를 지원합니다.</p>
+        </div>
+        <div class="feat-card">
+            <div class="icon">&#x1F9E0;</div>
+            <h3>AI 카테고리 분류</h3>
+            <p>스타벅스는 식비, 올리브영은 쇼핑. AI가 가맹점을 분석하여 식비, 교통, 쇼핑, 의료, 주거, 금융으로 자동 분류합니다.</p>
+        </div>
+        <div class="feat-card">
+            <div class="icon">&#x1F4B0;</div>
+            <h3>일일 예산 계산</h3>
+            <p>월 예산과 고정비, 이번 달 지출을 종합해 "오늘 쓸 수 있는 돈"을 실시간으로 계산해 줍니다.</p>
+        </div>
+        <div class="feat-card">
+            <div class="icon">&#x1F6A8;</div>
+            <h3>과소비 오버레이 경고</h3>
+            <p>5만원 이상 결제 시 화면에 경고 오버레이를 띄워줍니다. 10만원 이상이면 더 강력한 경고가 나타납니다.</p>
+        </div>
+        <div class="feat-card">
+            <div class="icon">&#x1F4AC;</div>
+            <h3>AI 잔소리 알림</h3>
+            <p>결제할 때마다 AI가 따끔한 잔소리 메시지를 보내줍니다. 유머러스하지만 효과적인 소비 억제 장치입니다.</p>
+        </div>
+        <div class="feat-card">
+            <div class="icon">&#x1F4C8;</div>
+            <h3>목표 저축 예측</h3>
+            <p>과거 3개월 소비 패턴을 분석하여 목표 금액을 기간 내에 달성할 수 있는지 AI가 예측해 줍니다.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+    <div class="section-tag">How it works</div>
+    <h2>이렇게 작동해요</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+                <h3>앱 설치 후 알림 권한 허용</h3>
+                <p>APK를 설치하고 SMS 수신 권한과 알림 접근 권한을 허용해 주세요.</p>
             </div>
         </div>
-
-        <a href="fintrack-debug.apk" class="download-btn" download>
-            <span class="android-icon">&#x1F4E5;</span>
-            APK 다운로드
-        </a>
-        <p class="file-info">Android 9.0+ | ~58MB | v1.0.0-debug</p>
-
-        <div class="api-section">
-            <h3>API Server</h3>
-            <div class="api-url">
-                <a href="https://fintrack-api-production-26db.up.railway.app/docs" target="_blank">
-                    https://fintrack-api-production-26db.up.railway.app
-                </a>
+        <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+                <h3>카드 결제하면 자동 기록</h3>
+                <p>카드 결제 SMS가 오면 FinTrack이 자동으로 감지하여 금액, 가맹점, 날짜를 파싱하고 저장합니다.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+                <h3>AI가 분류하고 잔소리</h3>
+                <p>서버의 AI가 거래를 카테고리별로 분류하고, 과소비 시 잔소리 메시지와 오버레이 경고를 보내줍니다.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+                <h3>대시보드에서 한눈에 확인</h3>
+                <p>오늘 쓸 수 있는 돈, 이번 달 지출 현황, 목표 저축 달성 여부를 대시보드에서 바로 확인하세요.</p>
             </div>
         </div>
     </div>
+</section>
 
-    <footer>FinTrack &copy; 2026 Hackathon Project</footer>
+<!-- TECH STACK -->
+<section class="tech">
+    <div class="section-tag">Tech Stack</div>
+    <div class="tech-pills">
+        <span class="pill">Kotlin</span>
+        <span class="pill">Jetpack Compose</span>
+        <span class="pill">Hilt DI</span>
+        <span class="pill">Room DB</span>
+        <span class="pill">Retrofit</span>
+        <span class="pill">Coroutines</span>
+        <span class="pill">FastAPI</span>
+        <span class="pill">SQLAlchemy</span>
+        <span class="pill">OpenAI GPT</span>
+        <span class="pill">Railway</span>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="download">
+    <div class="cta-box">
+        <h2>지금 바로 시작하세요</h2>
+        <p>설치 한 번이면 당신의 AI 재무 관리사가 24시간 함께합니다.</p>
+        <a href="fintrack-debug.apk" class="btn-primary" download>&#x1F4E5; APK 다운로드</a>
+        <p class="file-info">Android 9.0+ (API 28) | ~58MB | v1.0.0</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="links">
+        <a href="https://fintrack-api-production-26db.up.railway.app/docs" target="_blank">API Docs</a>
+        <a href="https://github.com/chuljin100/fintrack" target="_blank">GitHub</a>
+    </div>
+    <div class="copy">FinTrack &copy; 2026 Hackathon Project</div>
+</footer>
+
 </body>
 </html>
