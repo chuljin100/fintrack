@@ -78,6 +78,20 @@
         .cta-box p{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:32px}
         .cta-box .file-info{font-size:12px;color:rgba(255,255,255,.3);margin-top:16px}
 
+        /* ── INSTALL GUIDE ── */
+        .install-guide{padding:60px 24px 100px;max-width:800px;margin:0 auto}
+        .install-guide .section-tag{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#ff9800;font-weight:600;margin-bottom:12px}
+        .install-guide h2{text-align:center;font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:16px}
+        .install-guide .guide-desc{text-align:center;font-size:14px;color:rgba(255,255,255,.4);margin-bottom:48px;line-height:1.6}
+        .guide-steps{display:flex;flex-direction:column;gap:20px}
+        .guide-step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:24px 28px;display:flex;gap:20px;align-items:flex-start}
+        .guide-step .gs-num{width:36px;height:36px;flex-shrink:0;background:linear-gradient(135deg,#ff9800,#f57c00);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff}
+        .guide-step .gs-text h3{font-size:16px;font-weight:700;margin-bottom:4px}
+        .guide-step .gs-text p{font-size:13px;color:rgba(255,255,255,.4);line-height:1.6}
+        .guide-step .gs-text .path{display:inline-block;background:rgba(255,152,0,.1);border:1px solid rgba(255,152,0,.2);color:#ffb74d;padding:2px 10px;border-radius:6px;font-size:12px;font-weight:600;margin-top:6px}
+        .guide-note{margin-top:28px;background:rgba(255,152,0,.06);border:1px solid rgba(255,152,0,.12);border-radius:14px;padding:20px 24px;font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;text-align:center}
+        .guide-note strong{color:#ffb74d}
+
         /* ── FOOTER ── */
         footer{padding:40px 24px;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
         footer .links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
@@ -233,6 +247,55 @@
         <p>설치 한 번이면 당신의 AI 재무 관리사 돈소리가 24시간 함께합니다.</p>
         <a href="fintrack-debug.apk" class="btn-primary" download>&#x1F4E5; APK 다운로드</a>
         <p class="file-info">Android 9.0+ (API 28) | ~58MB | v1.0.0</p>
+        <p class="file-info" style="margin-top:12px"><a href="#install" style="color:#ffb74d;text-decoration:underline">&#x1F512; 설치가 안 되나요? 설치 가이드 보기</a></p>
+    </div>
+</section>
+
+<!-- INSTALL GUIDE -->
+<section class="install-guide" id="install">
+    <div class="section-tag">Install Guide</div>
+    <h2>APK 설치 방법</h2>
+    <p class="guide-desc">Play 스토어 외부 앱이라 보안 설정을 변경해야 합니다.<br>아래 단계를 따라해 주세요. (1분이면 끝!)</p>
+    <div class="guide-steps">
+        <div class="guide-step">
+            <div class="gs-num">1</div>
+            <div class="gs-text">
+                <h3>APK 파일 다운로드</h3>
+                <p>위의 다운로드 버튼을 눌러 APK 파일을 받아주세요. 브라우저에서 "유해한 파일" 경고가 뜨면 <strong>"계속 다운로드"</strong>를 눌러주세요.</p>
+            </div>
+        </div>
+        <div class="guide-step">
+            <div class="gs-num">2</div>
+            <div class="gs-text">
+                <h3>출처를 알 수 없는 앱 허용</h3>
+                <p>다운로드한 APK를 열면 "보안상의 이유로 설치할 수 없습니다" 메시지가 뜹니다. <strong>"설정"</strong>을 눌러주세요.</p>
+                <span class="path">설정 > 앱 > 특별한 접근 > 출처를 알 수 없는 앱 설치</span>
+            </div>
+        </div>
+        <div class="guide-step">
+            <div class="gs-num">3</div>
+            <div class="gs-text">
+                <h3>브라우저 앱 허용</h3>
+                <p>사용 중인 브라우저(Chrome, Samsung Internet 등)를 찾아 <strong>"이 출처 허용"</strong>을 켜주세요.</p>
+            </div>
+        </div>
+        <div class="guide-step">
+            <div class="gs-num">4</div>
+            <div class="gs-text">
+                <h3>설치 진행</h3>
+                <p>다시 APK 파일을 열면 설치가 진행됩니다. Google Play 프로텍트 경고가 뜨면 <strong>"무시하고 설치"</strong>를 눌러주세요.</p>
+            </div>
+        </div>
+        <div class="guide-step">
+            <div class="gs-num">5</div>
+            <div class="gs-text">
+                <h3>권한 허용</h3>
+                <p>앱 실행 후 SMS 수신 권한과 알림 접근 권한을 허용해 주세요. 돈소리가 카드 결제 문자를 자동으로 읽기 위해 필요합니다.</p>
+            </div>
+        </div>
+    </div>
+    <div class="guide-note">
+        <strong>&#x1F512; 보안 안내:</strong> 돈소리는 오픈소스 프로젝트이며, 소스코드를 <a href="https://github.com/chuljin100/fintrack" target="_blank" style="color:#667eea">GitHub</a>에서 직접 확인할 수 있습니다.<br>개인정보는 기기 내 Room DB에 저장되며, 서버에는 카테고리 분류를 위한 최소 정보만 전송됩니다.
     </div>
 </section>
 
