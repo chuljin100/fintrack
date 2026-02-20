@@ -20,6 +20,7 @@ from schemas import (
     UserCreate,
 )
 from services.ai_service import classify_and_update
+from services.play_store import add_tester_to_internal_track
 
 
 @asynccontextmanager
@@ -231,9 +232,10 @@ async def create_user(
 @app.post("/testers", response_model=TesterRead)
 async def register_tester(
     data: TesterCreate,
+    background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
 ):
-    """테스터 이메일 등록."""
+    """테스터 이메일 등록 + Play Store 내부 테스트 자동 추가."""
     existing = await db.execute(select(Tester).where(Tester.email == data.email))
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="이미 등록된 이메일입니다")
@@ -241,7 +243,22 @@ async def register_tester(
     db.add(tester)
     await db.commit()
     await db.refresh(tester)
+
+    # 백그라운드에서 Play Store 테스터 자동 추가
+    background_tasks.add_task(_add_to_play_store, data.email)
+
     return tester
+
+
+def _add_to_play_store(email: str):
+    """Play Store에 테스터 추가 (백그라운드 태스크)."""
+    import logging
+    logger = logging.getLogger(__name__)
+    try:
+        result = add_tester_to_internal_track(email)
+        logger.info(f"Play Store 테스터 추가: {result}")
+    except Exception as e:
+        logger.error(f"Play Store 테스터 추가 실패: {email} - {e}")
 
 
 @app.get("/testers", response_model=list[TesterRead])
