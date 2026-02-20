@@ -21,6 +21,7 @@ from schemas import (
 )
 from services.ai_service import classify_and_update
 from services.play_store import add_tester_to_internal_track
+from services.telegram import send_new_tester_alert
 
 
 @asynccontextmanager
@@ -244,21 +245,10 @@ async def register_tester(
     await db.commit()
     await db.refresh(tester)
 
-    # 백그라운드에서 Play Store 테스터 자동 추가
-    background_tasks.add_task(_add_to_play_store, data.email)
+    # 백그라운드에서 텔레그램 알림 전송
+    background_tasks.add_task(send_new_tester_alert, data.email, data.name)
 
     return tester
-
-
-def _add_to_play_store(email: str):
-    """Play Store에 테스터 추가 (백그라운드 태스크)."""
-    import logging
-    logger = logging.getLogger(__name__)
-    try:
-        result = add_tester_to_internal_track(email)
-        logger.info(f"Play Store 테스터 추가: {result}")
-    except Exception as e:
-        logger.error(f"Play Store 테스터 추가 실패: {email} - {e}")
 
 
 @app.get("/testers", response_model=list[TesterRead])
