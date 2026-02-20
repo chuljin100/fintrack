@@ -78,6 +78,28 @@
         .cta-box p{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:32px}
         .cta-box .file-info{font-size:12px;color:rgba(255,255,255,.3);margin-top:16px}
 
+        /* ── TESTER SIGNUP ── */
+        .tester-signup{padding:80px 24px;max-width:600px;margin:0 auto}
+        .tester-signup .section-tag{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#4caf50;font-weight:600;margin-bottom:12px}
+        .tester-signup h2{text-align:center;font-size:clamp(24px,4vw,36px);font-weight:800;margin-bottom:12px}
+        .tester-signup .desc{text-align:center;font-size:15px;color:rgba(255,255,255,.45);margin-bottom:36px;line-height:1.7}
+        .signup-form{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:36px 32px}
+        .signup-form .field{margin-bottom:16px}
+        .signup-form label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.5);margin-bottom:6px}
+        .signup-form input{width:100%;padding:14px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;color:#fff;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s}
+        .signup-form input:focus{border-color:#4caf50}
+        .signup-form input::placeholder{color:rgba(255,255,255,.25)}
+        .btn-signup{width:100%;padding:16px;background:linear-gradient(135deg,#4caf50,#2e7d32);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .25s;box-shadow:0 8px 32px rgba(76,175,80,.3)}
+        .btn-signup:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(76,175,80,.45)}
+        .btn-signup:disabled{opacity:.5;cursor:not-allowed;transform:none}
+        .signup-result{margin-top:20px;padding:16px 20px;border-radius:12px;font-size:14px;text-align:center;display:none;line-height:1.6}
+        .signup-result.success{display:block;background:rgba(76,175,80,.1);border:1px solid rgba(76,175,80,.25);color:#81c784}
+        .signup-result.error{display:block;background:rgba(244,67,54,.1);border:1px solid rgba(244,67,54,.25);color:#e57373}
+        .signup-result a{color:#81c784;text-decoration:underline;font-weight:600}
+        .signup-benefits{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+        .signup-benefit{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.5)}
+        .signup-benefit .check{color:#4caf50;font-weight:700}
+
         /* ── INSTALL GUIDE ── */
         .install-guide{padding:60px 24px 100px;max-width:800px;margin:0 auto}
         .install-guide .section-tag{text-align:center;font-size:13px;text-transform:uppercase;letter-spacing:3px;color:#ff9800;font-weight:600;margin-bottom:12px}
@@ -115,7 +137,7 @@
         <a href="#" class="brand"><span>돈소리</span></a>
         <div style="display:flex;gap:10px;align-items:center">
             <a href="video.html" class="cta" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)">&#x25B6;&#xFE0F; 소개영상</a>
-            <a href="#download" class="cta">APK &#x1F4E5;</a>
+            <a href="#tester" class="cta">테스터 신청 &#x1F3AE;</a>
         </div>
     </div>
 </nav>
@@ -127,7 +149,7 @@
         <h1>당신의 지갑을 지켜주는<br><span class="accent">AI 재무 관리사, 돈소리</span></h1>
         <p>카드 결제 문자가 오면 자동으로 기록하고,<br>AI가 지출을 분석해서 잔소리까지 해주는<br>당신만의 재무 관리 파트너</p>
         <div class="hero-buttons">
-            <a href="#download" class="btn-primary">&#x1F4E5; APK 다운로드</a>
+            <a href="#tester" class="btn-primary">&#x1F3AE; 테스터 신청하기</a>
             <a href="video.html" class="btn-secondary">&#x25B6;&#xFE0F; 소개영상 보기</a>
         </div>
     </div>
@@ -248,11 +270,71 @@
     <div class="cta-box">
         <h2>지금 바로 시작하세요</h2>
         <p>설치 한 번이면 당신의 AI 재무 관리사 돈소리가 24시간 함께합니다.</p>
-        <a href="fintrack.apk" class="btn-primary" download>&#x1F4E5; APK 다운로드</a>
-        <p class="file-info">Android 9.0+ (API 28) | ~57MB | v1.0.0 (Release)</p>
-        <p class="file-info" style="margin-top:12px"><a href="#install" style="color:#ffb74d;text-decoration:underline">&#x1F512; 설치가 안 되나요? 설치 가이드 보기</a></p>
+        <a href="#tester" class="btn-primary">&#x1F3AE; Play Store 테스터 신청</a>
+        <p class="file-info" style="margin-top:16px">보안 설정 변경 없이 Play Store에서 바로 설치!</p>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+            <a href="fintrack.apk" class="btn-secondary" download style="padding:12px 24px;font-size:14px">&#x1F4E5; APK 직접 다운로드</a>
+        </div>
+        <p class="file-info" style="margin-top:12px"><a href="#install" style="color:#ffb74d;text-decoration:underline">&#x1F512; APK 설치가 안 되나요? 설치 가이드 보기</a></p>
     </div>
 </section>
+
+<!-- TESTER SIGNUP -->
+<section class="tester-signup" id="tester">
+    <div class="section-tag">Beta Tester</div>
+    <h2>Play Store 테스터 신청</h2>
+    <p class="desc">Google 계정 이메일을 등록하면 Play Store에서<br>보안 설정 변경 없이 바로 설치할 수 있습니다.</p>
+    <div class="signup-benefits">
+        <div class="signup-benefit"><span class="check">&#x2713;</span> 보안 설정 변경 불필요</div>
+        <div class="signup-benefit"><span class="check">&#x2713;</span> Play Store에서 정상 설치</div>
+        <div class="signup-benefit"><span class="check">&#x2713;</span> 자동 업데이트 지원</div>
+    </div>
+    <div class="signup-form">
+        <div class="field">
+            <label>Google 계정 이메일 (Gmail)</label>
+            <input type="email" id="tester-email" placeholder="example@gmail.com" required>
+        </div>
+        <div class="field">
+            <label>이름 (선택)</label>
+            <input type="text" id="tester-name" placeholder="홍길동">
+        </div>
+        <button class="btn-signup" id="signup-btn" onclick="registerTester()">테스터 신청하기</button>
+        <div class="signup-result" id="signup-result"></div>
+    </div>
+</section>
+
+<script>
+async function registerTester(){
+    const email=document.getElementById('tester-email').value.trim();
+    const name=document.getElementById('tester-name').value.trim();
+    const btn=document.getElementById('signup-btn');
+    const result=document.getElementById('signup-result');
+    if(!email){result.className='signup-result error';result.textContent='이메일을 입력해주세요.';return}
+    if(!email.includes('@')){result.className='signup-result error';result.textContent='올바른 이메일 형식을 입력해주세요.';return}
+    btn.disabled=true;btn.textContent='등록 중...';
+    try{
+        const res=await fetch('https://fintrack-api-production-26db.up.railway.app/testers',{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({email,name})
+        });
+        if(res.ok){
+            result.className='signup-result success';
+            result.innerHTML='&#x2705; 테스터 등록 완료! 곧 Play Store 내부 테스트에 추가됩니다.<br>추가 완료 후 아래 링크에서 설치하세요.<br><a href="https://play.google.com/apps/internaltest/4701729498498501595" target="_blank">&#x1F3AE; Play Store에서 설치하기</a>';
+            document.getElementById('tester-email').value='';
+            document.getElementById('tester-name').value='';
+        }else if(res.status===409){
+            result.className='signup-result success';
+            result.innerHTML='이미 등록된 이메일입니다! 아래 링크에서 설치하세요.<br><a href="https://play.google.com/apps/internaltest/4701729498498501595" target="_blank">&#x1F3AE; Play Store에서 설치하기</a>';
+        }else{
+            const err=await res.json();
+            result.className='signup-result error';result.textContent='오류: '+(err.detail||'등록에 실패했습니다.');
+        }
+    }catch(e){
+        result.className='signup-result error';result.textContent='서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요.';
+    }
+    btn.disabled=false;btn.textContent='테스터 신청하기';
+}
+</script>
 
 <!-- INSTALL GUIDE -->
 <section class="install-guide" id="install">
