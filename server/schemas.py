@@ -56,3 +56,19 @@ class UserCreate(BaseModel):
     name: str = "사용자"
     monthly_budget: int = 1_000_000
     fixed_expenses: int = 300_000
+
+
+# --- Tester ---
+
+class TesterCreate(BaseModel):
+    email: str
+    name: str = ""
+
+
+class TesterRead(BaseModel):
+    id: int
+    email: str
+    name: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}

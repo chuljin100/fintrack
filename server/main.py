@@ -3,15 +3,18 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timedelta
 
 from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database import get_db, init_db
-from models import Transaction, User
+from models import Tester, Transaction, User
 from schemas import (
     DailyBudgetResponse,
     ForecastRequest,
     ForecastResponse,
+    TesterCreate,
+    TesterRead,
     TransactionCreate,
     TransactionRead,
     UserCreate,
@@ -26,6 +29,13 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="FinTrack API", version="1.0.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://chuljin100.github.io"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # ──────────────────────────────────────────
@@ -211,3 +221,39 @@ async def create_user(
     await db.commit()
     await db.refresh(user)
     return {"id": user.id, "user_id": user.user_id}
+
+
+# ──────────────────────────────────────────
+# 테스터 등록 엔드포인트
+# ──────────────────────────────────────────
+
+
+@app.post("/testers", response_model=TesterRead)
+async def register_tester(
+    data: TesterCreate,
+    db: AsyncSession = Depends(get_db),
+):
+    """테스터 이메일 등록."""
+    existing = await db.execute(select(Tester).where(Tester.email == data.email))
+    if existing.scalar_one_or_none():
+        raise HTTPException(status_code=409, detail="이미 등록된 이메일입니다")
+    tester = Tester(email=data.email, name=data.name)
+    db.add(tester)
+    await db.commit()
+    await db.refresh(tester)
+    return tester
+
+
+@app.get("/testers", response_model=list[TesterRead])
+async def list_testers(db: AsyncSession = Depends(get_db)):
+    """등록된 테스터 목록 조회."""
+    result = await db.execute(select(Tester).order_by(Tester.created_at.desc()))
+    return result.scalars().all()
+
+
+@app.get("/testers/emails")
+async def export_tester_emails(db: AsyncSession = Depends(get_db)):
+    """Play Console에 복사할 수 있는 이메일 목록 반환."""
+    result = await db.execute(select(Tester.email).order_by(Tester.created_at))
+    emails = [row[0] for row in result.all()]
+    return {"count": len(emails), "emails": emails, "csv": ",".join(emails)}
