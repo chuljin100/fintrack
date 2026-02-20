@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 import logging
@@ -15,11 +16,17 @@ SCOPES = ["https://www.googleapis.com/auth/androidpublisher"]
 
 def _get_service():
     """Google Play Developer API 서비스 클라이언트 생성."""
-    creds_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
-    if not creds_json:
-        raise RuntimeError("GOOGLE_SERVICE_ACCOUNT_JSON 환경변수가 설정되지 않았습니다")
+    # base64 인코딩된 서비스 계정 JSON
+    creds_b64 = os.environ.get("GOOGLE_SERVICE_ACCOUNT_B64")
+    if creds_b64:
+        creds_info = json.loads(base64.b64decode(creds_b64))
+    else:
+        # fallback: 직접 JSON
+        creds_json = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+        if not creds_json:
+            raise RuntimeError("서비스 계정 환경변수가 설정되지 않았습니다")
+        creds_info = json.loads(creds_json)
 
-    creds_info = json.loads(creds_json)
     credentials = service_account.Credentials.from_service_account_info(
         creds_info, scopes=SCOPES
     )
