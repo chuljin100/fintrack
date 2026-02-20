@@ -20,14 +20,17 @@ from schemas import (
     UserCreate,
 )
 from services.ai_service import classify_and_update
-from services.play_store import add_tester_to_internal_track
-from services.telegram import send_new_tester_alert
+from services.telegram import tester_check_loop
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    import asyncio
+    from database import async_session
     await init_db()
+    task = asyncio.create_task(tester_check_loop(async_session))
     yield
+    task.cancel()
 
 
 app = FastAPI(title="FinTrack API", version="1.0.0", lifespan=lifespan)
@@ -233,10 +236,9 @@ async def create_user(
 @app.post("/testers", response_model=TesterRead)
 async def register_tester(
     data: TesterCreate,
-    background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
 ):
-    """테스터 이메일 등록 + Play Store 내부 테스트 자동 추가."""
+    """테스터 이메일 등록. 5분마다 신규 테스터 텔레그램 알림."""
     existing = await db.execute(select(Tester).where(Tester.email == data.email))
     if existing.scalar_one_or_none():
         raise HTTPException(status_code=409, detail="이미 등록된 이메일입니다")
@@ -244,9 +246,6 @@ async def register_tester(
     db.add(tester)
     await db.commit()
     await db.refresh(tester)
-
-    # 백그라운드에서 텔레그램 알림 전송
-    background_tasks.add_task(send_new_tester_alert, data.email, data.name)
 
     return tester
 

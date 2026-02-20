@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Integer, String, DateTime, Float
+from sqlalchemy import Boolean, Integer, String, DateTime, Float
 from sqlalchemy.orm import Mapped, mapped_column
 
 from database import Base
@@ -25,6 +25,7 @@ class Tester(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     email: Mapped[str] = mapped_column(String, unique=True, index=True)
     name: Mapped[str] = mapped_column(String, default="")
+    notified: Mapped[bool] = mapped_column(Boolean, default=False)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
