@@ -32,7 +32,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:8000/") // 에뮬레이터에서 localhost 접근
+            .baseUrl("https://fintrack-api-production-26db.up.railway.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
